@@ -1,3 +1,10 @@
+// I need to initialize hero and enemy objects I built(sort of)
+//    New hero object
+
+// Initialize allEnemies array
+// For each enemy create and push new Enemy object into above array
+
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -14,18 +21,74 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    // If enemy is not passed boundary:
+    //   move forward
+    //   increment x by speed * dt
+    //  else
+    //    reset position to starting point
 };
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+// Enemy.prototype.render = function() {
+//     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+// };
 
+class Hero {
+    constructor() {
+      this.x = 0;
+      this.y = 0;
+      this.sprite = 'images/char-boy.png';
+    }
+//Draw the enemy on the screen, required method for game
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    };
+
+    // @param {string} input 
+    handleInput(input) {
+      switch(input) {
+          case 'left':
+            this.x -= 20;
+             break;
+          case 'up':
+            this.y -= 20;
+              break;
+          case 'right':
+            this.x += 20;
+              break;
+          case 'down':
+            this.y += 20;
+              break;
+      }
+    }
+
+
+
+    // put methods also:
+     
+      //  check for collision between hero and enemy
+        //   did player x and y collide with enemy?
+
+     //  check win here
+        //   did player x and y reach final tile?
+
+     //  render
+        //  draw player sprite on current x and y coord position
+
+    //   handle keyboard input
+        //  update players x and y properties according to input
+
+    //   reset hero when collision with enemy occurs
+        //  set x and y to starting(default) x and y coord
+
+
+
+}
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 
-
+const player = new Hero();
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
