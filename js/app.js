@@ -35,8 +35,10 @@ Enemy.prototype.update = function(dt) {
 
 class Hero {
     constructor() {
-      this.x = 0;
-      this.y = 0;
+      this.step = 101;
+      this.jump = 83;
+      this.x = 200;
+      this.y = 400;
       this.sprite = 'images/char-boy.png';
     }
 //Draw the enemy on the screen, required method for game
@@ -48,16 +50,25 @@ class Hero {
     handleInput(input) {
       switch(input) {
           case 'left':
-            this.x -= 20;
+           if (this.x >0) {
+              this.x -= this.step;
+           }
              break;
           case 'up':
-            this.y -= 20;
+           if (this.y > 0){
+             this.y -= this.jump;
+           }
+            
               break;
           case 'right':
-            this.x += 20;
+           if (this.x < 401) {
+              this.x += this.step;
+           }
               break;
           case 'down':
-            this.y += 20;
+           if ( this.y < 400) {
+            this.y += this.jump;
+           }
               break;
       }
     }
